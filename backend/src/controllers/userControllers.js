@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 
 module.exports = {
-    // async listAll(req, res){
-    //     const page = req.query.page;
-    //     const users = await Users.paginate({},{page,limit:3});
-    //     res.json(users);
-    // },
     async listAll(req, res){
-        const users = await Users.find();
+        const page = req.query.page;
+        const users = await Users.paginate({},{page,limit:3});
         res.json(users);
     },
+    // async listAll(req, res){
+    //     const users = await Users.find();
+    //     res.json(users);
+    // },
     async store(req,res)
     {
         const payload = await req.body;
